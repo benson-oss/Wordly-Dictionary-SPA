@@ -77,11 +77,15 @@ searchform.addEventListener("submit", function(event) {
 });
 
 async function fetchWord(word) {
-  const encodedWord = encodeURIComponent(word);
+  //Ensures the word is safe to put in a URL.eg spaces like %20
+  //const encodedWord = word;
+   //const encodedWord=encodeURI(word);
+const encodedWord = word.trim();
 
   try {
+    //Sends a request to the Free Dictionary API for the given word.
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodedWord}`);
-
+//Checks if the server responded successfully.
     if (!response.ok) {
       if (response.status === 404) {
         loadMessages.textContent = "❌ Word not found.";
@@ -90,10 +94,11 @@ async function fetchWord(word) {
       }
       return;
     }
-
+//Converts the response body into usable JavaScript objects.
     const data = await response.json();
+    //Passes the parsed data to another function that updates the UI with word details (
     displayWord(data);
-
+//Handles network failures (like no internet or server down).
   } catch (error) {
     loadMessages.textContent = "❌ Network or server failure.";
     console.error("Fetch error:", error);
@@ -103,8 +108,11 @@ async function fetchWord(word) {
   }
 }
 function getAudioUrl(entry) {
+    // If entry is missing or phonetics is not an array, return null
   if (!entry || !Array.isArray(entry.phonetics)) return null;
+    // Find the first phonetic object that has a non-empty audio property
   const phoneticWithAudio = entry.phonetics.find(p => p.audio);
+    // If found, return its audio URL; otherwise return null
   return phoneticWithAudio ? phoneticWithAudio.audio : null;
 }
 
@@ -135,47 +143,51 @@ function displayWord(data) {
   }
 
   // Audio
+  //Finds the first phonetic object with an audio URL.
   const audioUrl = entry.phonetics?.find(p => p.audio)?.audio;
-
+//If audio exists, creates a Play Pronunciation button that plays the audio when clicked.
   if (audioUrl) {
     const playButton = document.createElement("button");
     playButton.textContent = "🔊 Play Pronunciation";
-
     playButton.addEventListener("click", () => {
       const audio = new Audio(audioUrl);
       audio.play();
     });
 
     audioControl.appendChild(playButton);
+    //If no audio exists, shows "No pronunciation audio available.".
   } else {
     audioControl.textContent = "No pronunciation audio available.";
   }
 
   // Definitions & Examples
+  //looping through meaning
   entry.meanings.forEach(meaning => {
+    //Creates an h3 heading showing the part of speech.
     const heading = document.createElement("h3");
     heading.textContent = meaning.partOfSpeech;
     definitions.appendChild(heading);
-
+//Creates a ul list to hold definitions.
     const ul = document.createElement("ul");
-
+//Loops through each definition inside the meaning.
     meaning.definitions.forEach(def => {
+     // Creates a li for each definition and adds it to the list.
       const li = document.createElement("li");
       li.textContent = def.definition;
       ul.appendChild(li);
-
+//If the definition has an example sentence, creates a p element and adds it to the examples section.
       if (def.example) {
         const p = document.createElement("p");
         p.textContent = `Example: ${def.example}`;
         examples.appendChild(p);
       }
     });
-
+//After finishing all definitions for that meaning, appends the list to the definitions section.
     definitions.appendChild(ul);
   });
-
+//Clears the meanings section before adding new content.
   meanings.innerHTML = "";
-
+//loops through meaning again showing parts of speech
 entry.meanings.forEach((meaning) => {
     const p = document.createElement("p");
     p.textContent = meaning.partOfSpeech;
@@ -183,22 +195,25 @@ entry.meanings.forEach((meaning) => {
 });
 
   // Synonyms
+  //Starts an empty array to collect synonyms.
   const allSynonyms = [];
-
+//loops through meanings
   entry.meanings.forEach(meaning => {
     if (meaning.synonyms) {
+      //if meaning has synonym it pushes the synonym to the allsynonym array
       allSynonyms.push(...meaning.synonyms);
     }
-
+ //loops again and add definitions and synonym
     meaning.definitions.forEach(def => {
       if (def.synonyms) {
         allSynonyms.push(...def.synonyms);
       }
     });
   });
+//Removes duplicates by converting to a Set and back to an array.
 
   const uniqueSynonyms = [...new Set(allSynonyms)];
-
+//Displays synonyms as a comma-separated list, or shows “None available” if empty.
   synonyms.textContent =
     uniqueSynonyms.length > 0
       ? "Synonyms: " + uniqueSynonyms.join(", ")
@@ -256,5 +271,4 @@ function renderFavorites() {
     });
 }
 }
-
 });
