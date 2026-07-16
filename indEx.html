@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordly Dictionary App</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Wordly Dictionary App</h1>
+        <button id="theme">Light</button>
+    </header>
+
+    <div class="about">
+        <p>
+            This app allows users to search for words,
+            view their definitions, synonyms, pronunciation,
+            and even play audio for pronunciation—all without refreshing the page.
+        </p>
+    </div>
+
+    <!-- Search Form -->
+    <div id="formDiv">
+        <form id="searchform">
+            <h2>Search Form</h2>
+
+            <label for="inputs">Search Word:</label>
+
+            <input
+                type="text"
+                id="inputs"
+                placeholder="Type a word here..."
+                autocomplete="off"
+                required
+            >
+
+            <br><br>
+
+            <button type="submit" id="searchButton">
+                Search
+            </button>
+
+            <div id="loadMessages" class="hidden" role="alert"></div>
+
+        </form>
+    </div>
+
+    <main>
+
+        <!-- Results -->
+        <div id="ResultsectionDiv">
+
+            <section id="Resultsection">
+
+                <h2>Result Section</h2>
+
+                <h3>Searched Word</h3>
+                <div id="Searched-word"></div>
+
+                <!-- Pronunciation -->
+                <h3>Pronunciation</h3>
+
+                <div id="pronunciation-text"></div>
+
+                <!-- JS inserts the Play button here -->
+                <div id="audio-control"></div>
+
+                <!-- Definitions -->
+                <h3>Definitions</h3>
+
+                <ul id="definitions"></ul>
+
+                <!-- Meanings -->
+                <div id="meanings"></div>
+
+                <!-- Synonyms -->
+                <div id="synonyms"></div>
+
+                <!-- Examples -->
+                <div id="examples"></div>
+
+                <!-- Source -->
+                <div id="source-link"></div>
+
+                <!-- Favorite -->
+                <button id="favoriteButton">
+                    Save Word
+                </button>
+
+            </section>
+
+        </div>
+
+        <!-- Favorites -->
+
+        <div id="favouritesectionDiv">
+
+            <section id="favouritesection" class="hidden">
+
+                <h2>Favorites</h2>
+
+                <p id="favourites-empty">
+                    No favorite words saved yet.
+                </p>
+
+
+                <ul id="favorites-list">
+
+                </ul>
+            <button id="favoriteButton">Save Word</button>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Accessibility -->
+    <div id="Accessibility"></div>
+
+    <script src="index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body {
+    justify-content: center;
+    color:var(--ink);
+    background-color: url();
+}
+
+header {
+    background-color: black;
+    gap: 300px;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    display: flex;
+    width: auto;
+    height: 30px;
+}
+
+header h1 {
+    color: white;
+    font-family:'Times New Roman', Times, serif;
+}
+
+header button {
+height: 50px;
+width: 70px;
+}
+
+header button:hover {
+background-color: bisque;
+font-size: 20px;
+
+}
+.about {
+    text-align: center;
+    color: rgb(51, 94, 108);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 200;
+    font-size: medium;
+}
+
+#formDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
+#searchform {
+    border-radius: 20px;
+    padding: 2px;
+    text-align: center;
+    width: 400px;
+    background-color: rgb(134, 126, 126);
+}
+
+#searchform button{
+    padding: 2px;
+    margin-top: 10px;
+}
+
+#ResultsectionDiv {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ResultsectionDiv h2 {
+color: white;
+}   
+
+#Resultsection{
+    color: rgb(6, 6, 6);
+    font-weight: bolder;
+    border-radius: 20px;
+    padding: 60px;
+    width: 400px;
+    height: auto;
+}
+
+#favouritesectionDiv{
+        gap: 20px;
+
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#favouritesection{
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 60px;
+    width: 400px;
+    height: auto;
+    display: grid;
+}
+main{
+    background-color: #7a7777;
+    height: auto;
+    width: auto;
+    border: 2px solid black;
+    display: flex;
+    gap: 200px;
+    margin-top: 20px;
+}
