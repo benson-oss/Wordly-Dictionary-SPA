@@ -73,7 +73,7 @@ searchform.addEventListener("submit", function(event) {
   loadMessages.classList.remove("hidden");
 
   // Call fetchWord
-  fetchWord(word);
+  fetchWord(word);k
 });
 
 async function fetchWord(word) {
