@@ -17,7 +17,7 @@ body {
 
 header {
     background-color: black;
-    gap: 300px;
+    gap: auto;
     justify-content: center;
     align-items: center;
     padding: 50px;
@@ -84,7 +84,7 @@ color: white;
     font-weight: bolder;
     border-radius: 20px;
     padding: 60px;
-    width: 400px;
+    width: auto;
     height: auto;
 }
 
@@ -99,16 +99,33 @@ color: white;
     border-radius: 20px;
     margin-top: 20px;
     padding: 60px;
-    width: 400px;
+    width: auto;
     height: auto;
     display: grid;
 }
-main{
-    background-color: #7a7777;
-    height: auto;
-    width: auto;
-    border: 2px solid black;
-    display: flex;
-    gap: 200px;
-    margin-top: 20px;
+main {
+  background-color: #7a7777;
+  border: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;        /* allows items to wrap on small screens */
+  gap: 20px;              /* smaller default gap */
+  margin-top: 20px;
+  padding: 10px;
+}
+
+/* For larger screens (computers) */
+@media (min-width: 768px) {
+  main {
+    flex-direction: row;  /* items side by side */
+    gap: 200px;           /* bigger spacing */
+  }
+}
+
+/* For smaller screens (phones) */
+@media (max-width: 600px) {
+  main {
+    flex-direction: column; /* stack items vertically */
+    gap: 20px;              /* smaller spacing */
+    width: 100%;            /* take full width */
+  }
 }
