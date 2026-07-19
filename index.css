@@ -16,7 +16,7 @@ body {
 }
 
 header {
-    background-color: black;
+    background-color: rgb(83, 110, 199);
     gap: auto;
     justify-content: center;
     align-items: center;
@@ -104,11 +104,11 @@ color: white;
     display: grid;
 }
 main {
-  background-color: #7a7777;
+  background-color: rgb(40%,20%,70%);
   border: 2px solid black;
   display: flex;
   flex-wrap: wrap;        /* allows items to wrap on small screens */
-  gap: 20px;              /* smaller default gap */
+  gap: 10px;              /* smaller default gap */
   margin-top: 20px;
   padding: 10px;
 }
@@ -117,7 +117,7 @@ main {
 @media (min-width: 768px) {
   main {
     flex-direction: row;  /* items side by side */
-    gap: 200px;           /* bigger spacing */
+    gap: 100px;           /* bigger spacing */
   }
 }
 

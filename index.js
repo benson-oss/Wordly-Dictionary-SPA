@@ -18,6 +18,7 @@ const inputs = document.getElementById("inputs");
 const loadMessages = document.getElementById("loadMessages");
 
 // 📊 Results section
+const results=document.getElementById("Resultsection")
 const SearchedWord = document.getElementById("Searched-word");
 const pronunciationText = document.getElementById("pronunciation-text");
 const audioControl = document.getElementById("audio-control");
@@ -29,6 +30,9 @@ const synonyms = document.getElementById("synonyms");
 const examples = document.getElementById("examples");
 const sourceLink = document.getElementById("source-link");
 
+
+
+const main = document.getElementById("main")
 // ⭐ Favorites section
 const favouritesectionDiv = document.getElementById("favouritesectionDiv");
 const favouritesection = document.getElementById("favouritesection");
@@ -45,16 +49,20 @@ let favorites = [];
 //The button text updates to show the current mode.
 const body = document.body;
 const theme = document.getElementById("theme"); // <-- add this
-
+const paragraph = document.getElementById("p");
 // Set initial mode
 body.classList.add("light-mode");
 
 theme.addEventListener("click", () => {
   if (body.classList.contains("light-mode")) {
+    results.style.color="white"
+    paragraph.style.color='white'
     body.classList.remove("light-mode");
     body.classList.add("dark-mode");
     theme.textContent = "dark"; // update button label
   } else {
+        results.style.color="black"
+        paragraph.style.color='black'
     body.classList.remove("dark-mode");
     body.classList.add("light-mode");
     theme.textContent = "light"; // update button label
@@ -169,7 +177,7 @@ function displayWord(data) {
     definitions.appendChild(heading);
 //Creates a ul list to hold definitions.
     const ul = document.createElement("ul");
-//Loops through each definition inside the meaning.
+//Loops through each definition insid`e the meaning.
     meaning.definitions.forEach(def => {
      // Creates a li for each definition and adds it to the list.
       const li = document.createElement("li");
@@ -232,12 +240,16 @@ entry.meanings.forEach((meaning) => {
   favoriteButton.textContent = "Save Word";
 
   favoriteButton.onclick = () => {
+    
     if (!favorites.includes(entry.word)) {
         favorites.push(entry.word);
                 favouritesection.classList.remove("hidden");
 
         renderFavorites();
     }
+    favouritesection.style.width="auto"
+favouritesection.style.height="auto"
+favouritesection.style.padding="2px solid black"
 };
 function renderFavorites() {
     favoritesList.innerHTML = "";
@@ -252,6 +264,8 @@ function renderFavorites() {
     favorites.forEach(word => {
 
         const li = document.createElement("li");
+
+
 
         const span = document.createElement("span");
         span.textContent = word;
